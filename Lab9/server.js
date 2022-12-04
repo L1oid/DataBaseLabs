@@ -11,13 +11,8 @@ http.createServer(async function(request, response) {
 		response.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
 		response.end(index);
 	}
-	else if (url == "/style.css") {
-		const style = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab8/app/style.css");
-		response.writeHead(200, {"Content-Type": "text/css; charset=utf8"});
-		response.end(style);
-	}
-	else if (url == "/main.js") {
-		const script = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab8/app/pages/main.js");
+	else if (url == "/script.js") {
+		const script = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab8/app/script.js");
 		response.writeHead(200, { "Content-Type": "text/javascript; charset=utf8" });
 		response.end(script);
 	}
