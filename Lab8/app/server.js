@@ -7,12 +7,12 @@ const mongoClient = new MongoClient("mongodb://127.0.0.1:27017/");
 http.createServer(async function(request, response) {
 	let url = request.url;
 	if (url == "/") {
-		const index = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab8/Ex5/index.html");
+		const index = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab8/app/index.html");
 		response.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
 		response.end(index);
 	}
 	else if (url == "/script.js") {
-		const script = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab8/Ex5/script.js");
+		const script = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab8/app/script.js");
 		response.writeHead(200, { "Content-Type": "text/javascript; charset=utf8" });
 		response.end(script);
 	}
@@ -110,7 +110,7 @@ async function getArticlesTitle(title) {
 					_id: 0,
 					title: 1, 
 					authors: 1, 
-					placement_date: 1 
+					date: 1 
 				} 
 			}
 		]).toArray();
@@ -130,18 +130,9 @@ async function getArticlesAuthor(author) {
 		const articles = fb.collection("ScienceJournal");
 		result = await articles.aggregate([
 			{ 
-				$addFields: 
-				{ 
-					result: 
-					{ 
-						$in: [author, "$authors"] 
-					} 
-				} 
-			},
-			{ 
 				$match: 
 				{ 
-					result: true 
+					authors: author 
 				} 
 			},
 			{ 

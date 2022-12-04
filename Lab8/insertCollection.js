@@ -1,3 +1,5 @@
+db.ScienceJournal.drop();
+
 db.ScienceJournal.insertMany([
 	{
 		title: "Статья 1",
@@ -116,6 +118,30 @@ db.ScienceJournal.insertMany([
 				name: "Дмитрий",
 				comment: "Ух ты, надо бы закрыть долги",
 				mark: 10,
+			}
+		]
+	},
+	{
+		title: "Статья 6",
+		authors: ["Иванов Иван"],
+		date: new Date("03.12.2022"),
+		content: "Текст статьи 1",
+		tags: ["статья 1", "собачки", "кошки", "животные"],
+		reviews: [
+			{
+				name: "Алексей",
+				comment: "Лучшая статья !!",
+				mark: 10,
+			},
+			{
+				name: "Максим",
+				comment: "Классные собаки!!!",
+				mark: 9,
+			},
+			{
+				name: "Дмитрий",
+				comment: "Не люблю кошек((",
+				mark: 2,
 			}
 		]
 	}
