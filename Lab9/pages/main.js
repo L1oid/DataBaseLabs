@@ -50,6 +50,7 @@ async function clickBtnArticlesList() {
 }
 
 async function clickBtnArticlesTitle() {
+    let inputArticlesTitle = document.getElementById("inputArticlesTitle");
 	let title = {
 		title: inputArticlesTitle.value,
 	}
@@ -59,6 +60,7 @@ async function clickBtnArticlesTitle() {
 }
 
 async function clickBtnAuthorArticles() {
+    let selectAuthorArticles = document.getElementById("selectAuthorArticles");
 	let author = {
 		author: selectAuthorArticles.value,
 	}
