@@ -7,12 +7,22 @@ const mongoClient = new MongoClient("mongodb://127.0.0.1:27017/");
 http.createServer(async function(request, response) {
 	let url = request.url;
 	if (url == "/") {
-		const index = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab8/app/index.html");
+		const index = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab9/index.html");
 		response.writeHead(200, {"Content-Type": "text/html; charset=utf8"});
 		response.end(index);
 	}
-	else if (url == "/script.js") {
-		const script = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab8/app/script.js");
+	else if (url == "/style.css") {
+		const style = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab9/style.css");
+		response.writeHead(200, {"Content-Type": "text/css; charset=utf8"});
+		response.end(style);
+	}
+	else if (url == "/main.js") {
+		const script = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab9/pages/main.js");
+		response.writeHead(200, { "Content-Type": "text/javascript; charset=utf8" });
+		response.end(script);
+	}
+	else if (url == "/show/show.js") {
+		const script = fs.readFileSync("C:/Users/lloid/Documents/GitHub/DataBaseLabs/Lab9/show/show.js");
 		response.writeHead(200, { "Content-Type": "text/javascript; charset=utf8" });
 		response.end(script);
 	}
