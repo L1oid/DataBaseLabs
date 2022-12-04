@@ -1,4 +1,4 @@
-import { showArticles } from "./show/show.js"
+import { showArticlesWithButtons } from "./show/show.js"
 
 export function renderMain() {
     let root = document.body;
@@ -43,10 +43,27 @@ export function renderMain() {
     root.appendChild(articles);
 }
 
+function getId(event) {
+	let item = event.target.closest(".item");
+	let object_id = item.querySelector("._id").textContent;
+	let id = object_id.replace("_id: ", "");
+	return id;
+}
+
 async function clickBtnArticlesList() {
 	let response = await fetch("/articlesList", { method: "GET" });
 	let data = await response.json();
-	showArticles(data);
+	showArticlesWithButtons(data, clickBtnShowFullArticle, clickBtnDeleteArticle);
+}
+
+async function clickBtnShowFullArticle(event) {
+
+}
+
+async function clickBtnDeleteArticle(event) {
+	let id = getId(event);
+    await fetch('/articles/' + id, { method: 'DELETE', headers: { "Content-type": "application/json; charset=utf-8" } });
+    clickBtnArticlesList();
 }
 
 async function clickBtnArticlesTitle() {
@@ -54,9 +71,9 @@ async function clickBtnArticlesTitle() {
 	let title = {
 		title: inputArticlesTitle.value,
 	}
-	let response = await fetch("/articlesTitle", { method: "POST", body: JSON.stringify(title) });
+	let response = await fetch("/articlesTitle", { method: 'POST', headers: { "Content-type": "application/json; charset=utf-8" }, body: JSON.stringify(title) });
 	let data = await response.json();
-	showArticles(data);
+	showArticlesWithButtons(data, clickBtnShowFullArticle, clickBtnDeleteArticle);
 }
 
 async function clickBtnAuthorArticles() {
@@ -64,9 +81,9 @@ async function clickBtnAuthorArticles() {
 	let author = {
 		author: selectAuthorArticles.value,
 	}
-	let response = await fetch("/articlesAuthor", { method: "POST", body: JSON.stringify(author) });
+	let response = await fetch("/articlesAuthor", { method: 'POST', headers: { "Content-type": "application/json; charset=utf-8" }, body: JSON.stringify(author) });
 	let data = await response.json();
-	showArticles(data);
+	showArticlesWithButtons(data, clickBtnShowFullArticle, clickBtnDeleteArticle);
 }
 
 renderMain();
