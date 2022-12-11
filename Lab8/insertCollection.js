@@ -4,7 +4,7 @@ db.ScienceJournal.insertMany([
 	{
 		title: "Статья 1",
 		authors: ["Иванов Иван"],
-		date: new Date("03.12.2022"),
+		date: new Date("04.04.2019"),
 		content: "Текст статьи 1",
 		tags: ["статья 1", "программирование", "веб", "инженерия"],
 		reviews: [
@@ -16,19 +16,24 @@ db.ScienceJournal.insertMany([
 			{
 				name: "Максим",
 				comment: "Я научился программировать!!!",
-				mark: 9,
+				mark: 10,
 			},
 			{
 				name: "Дмитрий",
-				comment: "Ничего не понятно((",
-				mark: 2,
+				comment: "Всё понятно!!",
+				mark: 10,
+			},
+			{
+				name: "Алёшка",
+				comment: "Всё вообще понятно!!",
+				mark: 10,
 			}
 		]
 	},
     {
 		title: "Статья 2",
 		authors: ["Марк Цукерберг"],
-		date: new Date("17.11.2022"),
+		date: new Date("05.07.2020"),
 		content: "Текст статьи 2",
 		tags: ["статья 2", "соц сети", "сайты", "заработок"],
 		reviews: [
@@ -52,7 +57,7 @@ db.ScienceJournal.insertMany([
     {
 		title: "Статья 3",
 		authors: ["Стив Джобс", "Билл Гейтс"],
-		date: new Date("01.10.2022"),
+		date: new Date("11.09.2020"),
 		content: "Текст статьи 3",
 		tags: ["статья 3", "ос", "как стать успешным", "форбс"],
 		reviews: [
@@ -76,7 +81,7 @@ db.ScienceJournal.insertMany([
     {
 		title: "Статья 4",
 		authors: ["Тони Старк"],
-		date: new Date("03.09.2022"),
+		date: new Date("03.05.2021"),
 		content: "Текст статьи 4",
 		tags: ["статья 4", "как сделать суперкостюм", "филантроп", "плейбой"],
 		reviews: [
@@ -100,7 +105,7 @@ db.ScienceJournal.insertMany([
     {
 		title: "Статья 5",
 		authors: ["Продуктивный чувак"],
-		date: new Date("03.09.2022"),
+		date: new Date("07.11.2022"),
 		content: "Текст статьи 5",
 		tags: ["статья 5", "продуктивность", "эффективность", "полезность"],
 		reviews: [
@@ -124,7 +129,7 @@ db.ScienceJournal.insertMany([
 	{
 		title: "Статья 6",
 		authors: ["Иванов Иван"],
-		date: new Date("03.12.2022"),
+		date: new Date("12.11.2022"),
 		content: "Текст статьи 1",
 		tags: ["статья 1", "собачки", "кошки", "животные"],
 		reviews: [
