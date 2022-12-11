@@ -16,6 +16,7 @@ db.Employees.drop()
 db.Ords.drop()
 db.Cells.drop()
 db.Customers.drop()
+db.Stats.drop()
 //----------------------------------------1.COUNTRIES----------------------------------------
 let USA_Country = db.Countries.insertOne({ "name": "США" })
 let Russia_Country = db.Countries.insertOne({ "name": "Россия" })
@@ -311,27 +312,27 @@ let defective_05 = db.Defective.insertOne({
 let cell_01 = db.Cells.insertOne({
     product: db.Products.findOne({_id: product_01.insertedId}),
     price: 5000,
-    quantity: 300
+    quantity: 100
 })
 let cell_02 = db.Cells.insertOne({
     product: db.Products.findOne({_id: product_02.insertedId}),
     price: 18000,
-    quantity: 600
+    quantity: 300
 })
 let cell_03 = db.Cells.insertOne({
     product: db.Products.findOne({_id: product_03.insertedId}),
     price: 4000,
-    quantity: 900
+    quantity: 950
 })
 let cell_04 = db.Cells.insertOne({
     product: db.Products.findOne({_id: product_04.insertedId}),
     price: 50000,
-    quantity: 200
+    quantity: 150
 })
 let cell_05 = db.Cells.insertOne({
     product: db.Products.findOne({_id: product_05.insertedId}),
     price: 23000,
-    quantity: 1000
+    quantity: 750
 })
 let cell_06 = db.Cells.insertOne({
     product: null,
@@ -392,71 +393,131 @@ let customer_05 = db.Customers.insertOne({
 //----------------------------------------11.ORDS----------------------------------------
 let ord_01 = db.Ords.insertOne({
     customer: db.Customers.findOne({_id: customer_01.insertedId}),
-    date: date("07.12.2022"),
+    date: date("07.10.2022"),
+    total: 16500,
     products: [
         {
             product: db.Products.findOne({_id: product_01.insertedId}),
+            price: 5500,
             quantity: 3
         }
     ]
 })
 let ord_02 = db.Ords.insertOne({
     customer: db.Customers.findOne({_id: customer_02.insertedId}),
-    date: date("01.12.2022"),
+    date: date("01.10.2022"),
+    total: 116500,
     products: [
         {
             product: db.Products.findOne({_id: product_02.insertedId}),
+            price: 20000,
             quantity: 5
-        }
-    ]
-})
-let ord_03 = db.Ords.insertOne({
-    customer: db.Customers.findOne({_id: customer_03.insertedId}),
-    date: date("26.11.2019"),
-    products: [
+        },
         {
-            product: db.Products.findOne({_id: product_03.insertedId}),
-            quantity: 4
+            product: db.Products.findOne({_id: product_01.insertedId}),
+            price: 5500,
+            quantity: 3
         }
     ]
 })
 let ord_04 = db.Ords.insertOne({
     customer: db.Customers.findOne({_id: customer_04.insertedId}),
-    date: date("11.09.2022"),
+    date: date("29.10.2022"),
+    total: 330000,
     products: [
         {
             product: db.Products.findOne({_id: product_04.insertedId}),
+            price: 55000,
             quantity: 6
         }
     ]
 })
 let ord_05 = db.Ords.insertOne({
     customer: db.Customers.findOne({_id: customer_05.insertedId}),
-    date: date("13.08.2022"),
+    date: date("20.10.2022"),
+    total: 110000,
     products: [
         {
-            product: db.Products.findOne({_id: product_05.insertedId}),
+            product: db.Products.findOne({_id: product_03.insertedId}),
+            price: 5000,
             quantity: 2
+        },
+        {
+            product: db.Products.findOne({_id: product_05.insertedId}),
+            price: 25000,
+            quantity: 4
         }
     ]
 })
 let ord_06 = db.Ords.insertOne({
     customer: db.Customers.findOne({_id: customer_04.insertedId}),
     date: date("21.10.2022"),
+    total: 230000,
     products: [
         {
             product: db.Products.findOne({_id: product_03.insertedId}),
-            quantity: 3
+            price: 5000,
+            quantity: 2
+        },
+        {
+            product: db.Products.findOne({_id: product_04.insertedId}),
+            price: 55000,
+            quantity: 4
         }
     ]
 })
 let ord_07 = db.Ords.insertOne({
     customer: db.Customers.findOne({_id: customer_04.insertedId}),
     date: date("19.10.2022"),
+    total: 26500,
     products: [
         {
             product: db.Products.findOne({_id: product_03.insertedId}),
+            price: 5000,
+            quantity: 2
+        },
+        {
+            product: db.Products.findOne({_id: product_01.insertedId}),
+            price: 5500,
+            quantity: 3
+        }
+    ]
+})
+let ord_08 = db.Ords.insertOne({
+    customer: db.Customers.findOne({_id: customer_04.insertedId}),
+    date: date("16.10.2022"),
+    total: 600000,
+    products: [
+        {
+            product: db.Products.findOne({_id: product_04.insertedId}),
+            price: 55000,
+            quantity: 10
+        },
+        {
+            product: db.Products.findOne({_id: product_05.insertedId}),
+            price: 25000,
             quantity: 2
         }
     ]
+})
+//----------------------------------------12.STATS----------------------------------------
+let stat_01 = db.Stats.insertOne({
+    sells: 
+    {
+        total: 1429000,
+        quantity: 46,
+        ords_id:
+        [
+            ord_01.insertedId, ord_02.insertedId, ord_04.insertedId, ord_05.insertedId, ord_06.insertedId, ord_07.insertedId, ord_08.insertedId
+        ]
+    },
+    supplies:
+    {
+        total: 30015000,
+        quantity: 1750,
+        supplies_id:
+        [
+            supply_01.insertedId, supply_02.insertedId, supply_03.insertedId, supply_04.insertedId, supply_05.insertedId, supply_06.insertedId, supply_07.insertedId
+        ]
+    }
 })

@@ -5,13 +5,13 @@ db.SupplierTypes.aggregate([
             from: "Suppliers",
             localField: "name",
             foreignField: "type.name",
-            as: "supliers_info"
+            as: "suppliers_info"
         }
     },
     {
         $match:
         {
-            "supliers_info.products.product.type.name": "Стартер"
+            "suppliers_info.products.product.type.name": "Стартер"
         }
     },
     {
@@ -19,13 +19,13 @@ db.SupplierTypes.aggregate([
         {
             _id: 0,
             name: 1,
-            supliers_info:
+            suppliers_info:
             {
                 name: 1
             },
             suppliers_count:
             {
-                $size: "$supliers_info"
+                $size: "$suppliers_info"
             }
         }
     }

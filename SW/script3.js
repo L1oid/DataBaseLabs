@@ -1,41 +1,3 @@
-db.ProductTypes.aggregate([
-    {
-        $match:
-        {
-            "name": "Стартер"
-        }
-    },
-    {
-        $lookup:
-        {
-            from: "Ords",
-            localField: "name",
-            foreignField: "products.product.type.name",
-            as: "ords_info"
-        }
-    },
-    {
-        "$addFields": 
-        {
-            "ords_info": 
-            {
-                "$arrayElemAt": 
-                [
-                    {
-                        "$filter": {
-                            "input": "$ords_info",
-                            "as": "ords_inf",
-                            "cond": { $gte: [ "$$ords_inf.date", new Date("2022-10-18T16:00:00.000Z")] }
-                        }
-                    }, 0
-                ]
-            }
-        }
-    }
-])
-
-
-
 db.Ords.aggregate([
     {
         $match:
@@ -46,7 +8,7 @@ db.Ords.aggregate([
                 {
                     "date":
                     {
-                        $gte: new Date("2011-10-18T16:00:00.000Z")
+                        $gte: new Date("2022-10-18T16:00:00.000Z")
                     }
                 },
                 {
@@ -61,14 +23,74 @@ db.Ords.aggregate([
     {
         $group:
         {
-            _id: "$customer",
+            _id: "$customer"
+        }
+    },
+    {
+        $group:
+        {
+            _id: null,
+            customers: { $push: "$$ROOT" }
         }
     },
     {
         $project:
         {
             _id: 0,
-            "last_name": "$_id.last_name",
+            customers: "$customers._id.last_name",
+            customers_count:
+            {
+                $size: "$customers"
+            }
+        }
+    }
+])
+
+db.Ords.aggregate([
+    {
+        $unwind: "$products"
+    },
+    {
+        $match:
+        {
+            "products.product.type.name": "Стартер",
+        }
+    },
+    {
+        $group:
+        {
+            _id: "$customer",
+            "total_quantity":
+            {
+                $sum: "$products.quantity"
+            }
+        }
+    },
+    {
+        $match:
+        {
+            "total_quantity":
+            {
+                $gte: 1
+            }
+        }
+    },
+    {
+        $group:
+        {
+            _id: null,
+            customers: { $push: "$$ROOT" }
+        }
+    },
+    {
+        $project:
+        {
+            _id: 0,
+            customers: "$customers._id.last_name",
+            customers_count:
+            {
+                $size: "$customers"
+            }
         }
     }
 ])
